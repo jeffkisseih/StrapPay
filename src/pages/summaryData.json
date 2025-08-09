@@ -1,0 +1,7 @@
+[
+  { "period": "This Week", "count": 2, "amount": 150 },
+  { "period": "This Month", "count": 5, "amount": 270 },
+  { "period": "Last Month", "count": 4, "amount": 210 },
+  { "period": "This Year", "count": 12, "amount": 600 },
+  { "period": "Last Year", "count": 8, "amount": 420 }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2025-07-05T00:00:00Z",
+    "description": "Paid Electricity Bill",
+    "amount": 100,
+    "status": "Paid"
+  },
+  {
+    "date": "2025-07-06T00:00:00Z",
+    "description": "Paid Water Bill",
+    "amount": 50,
+    "status": "Paid"
+  },
+  {
+    "date": "2025-07-07T00:00:00Z",
+    "description": "Paid Internet Bill",
+    "amount": 60,
+    "status": "Paid"
+  },
+  {
+    "date": "2025-07-08T00:00:00Z",
+    "description": "Paid Netflix",
+    "amount": 15,
+    "status": "Paid"
+  },
+  {
+    "date": "2025-07-09T00:00:00Z",
+    "description": "Paid Gym Membership",
+    "amount": 45,
+    "status": "Paid"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "type": "Credit Card",
+    "lastFour": "1234",
+    "expiry": "12/25",
+    "email": "user1@example.com"
+  },
+  {
+    "type": "Debit Card",
+    "lastFour": "5678",
+    "expiry": "08/24",
+    "email": "user2@example.com"
+  },
+  {
+    "type": "PayPal",
+    "email": "user3@paypal.com"
+  },
+  {
+    "type": "Mobile Money",
+    "email": "user4@mobile.com"
+  },
+  {
+    "type": "Bank Transfer",
+    "email": "user5@bank.com"
+  }
+]
