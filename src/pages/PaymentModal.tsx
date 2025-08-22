@@ -8,6 +8,8 @@ interface Props {
   refreshPendingPayments: () => Promise<void>; // ✅ Add refresh here
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
 const PaymentModal: React.FC<Props> = ({ payment, onClose, onPaid, refreshPendingPayments }) => {
   const [processing, setProcessing] = useState(false);
   const [cardName, setCardName] = useState('');
@@ -36,7 +38,7 @@ const PaymentModal: React.FC<Props> = ({ payment, onClose, onPaid, refreshPendin
     setProcessing(true);
 
     try {
-      const response = await fetch(`/api/payments/${payment.id}/mark-paid`, {
+      const response = await fetch(`${API_BASE}/api/payments/${payment.id}/mark-paid`, {
         method: 'PATCH',
       });
 

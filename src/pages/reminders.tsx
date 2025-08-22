@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PendingPayment, Payment } from '../types/Reminder.ts';
 
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
 
 const Reminders = () => {
   const [pendingPayments, setPendingPayments] = useState<PendingPayment[]>([]);
@@ -13,15 +14,16 @@ const Reminders = () => {
   const fetchPayments = async () => {
     setLoading(true);
     try {
+      
       const [pendingRes, upcomingRes, overdueRes] = await Promise.all([
-        fetch('/api/payments/pending'),
-        fetch('/api/payments/upcoming'),
-        fetch('/api/payments/overdue'),
+        fetch(`${API_BASE}/api/payments/pending`),
+        fetch(`${API_BASE}/api/payments/upcoming`),
+        fetch(`${API_BASE}/api/payments/overdue`),
       ]);
 
-      const pendingData: PendingPayment[] = await pendingRes.json();
-      const upcomingData: Payment[] = await upcomingRes.json();
-      const overdueData: PendingPayment[] = await overdueRes.json();
+      const pendingData = (await pendingRes.json()) as PendingPayment[];
+      const upcomingData = (await upcomingRes.json()) as Payment[];
+      const overdueData = (await overdueRes.json()) as PendingPayment[];
 
       setPendingPayments(
         pendingData.map((p) => ({
@@ -117,7 +119,7 @@ const Reminders = () => {
                   className="h-4 w-4 mr-3 text-red-600 rounded focus:ring-red-500"
                 />
                 <label htmlFor={`overdue-${payment.id}`} className="text-gray-800">
-                  {payment.name} - ${payment.amount.toFixed(2)}
+                  {payment.name} - ${typeof payment.amount === 'number' ? payment.amount.toFixed(2) : payment.amount}
                 </label>
               </div>
               <div className="ml-7 space-y-1">

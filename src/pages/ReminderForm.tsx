@@ -5,6 +5,8 @@ interface ReminderFormProps {
   onSuccess: () => void;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
 const ReminderForm: React.FC<ReminderFormProps> = ({ onClose, onSuccess }) => {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
@@ -35,7 +37,7 @@ const ReminderForm: React.FC<ReminderFormProps> = ({ onClose, onSuccess }) => {
   }
 
     try {
-      const res = await fetch('/api/reminders', {
+      const res = await fetch(`${API_BASE}/api/reminders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: title, amount: parseFloat(amount), dueDate }),

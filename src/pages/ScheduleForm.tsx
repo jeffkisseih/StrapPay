@@ -5,6 +5,8 @@ interface ScheduleFormProps {
   onSuccess: () => void;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+
 const ScheduleForm: React.FC<ScheduleFormProps> = ({ onClose , onSuccess }) => {
   const [amount, setAmount] = useState('');
   const [billType, setBillType] = useState('');
@@ -40,7 +42,7 @@ const ScheduleForm: React.FC<ScheduleFormProps> = ({ onClose , onSuccess }) => {
   }
 
     try {
-      const res = await fetch('/api/reminders', {
+      const res = await fetch(`${API_BASE}/api/reminders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
