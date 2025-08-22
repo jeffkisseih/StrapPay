@@ -8,11 +8,12 @@
     "dev:client": "vite",
     "dev:server": "node --loader ts-node/esm  backend/src/utils/index.ts",
     "build": "tsc && vite build",
-    "start":"node dist/backend/src/utils/index.js",
+    "start": "node dist/backend/src/utils/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "framer-motion": "^12.23.12",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.7",
     "@types/react": "^19.1.8",
