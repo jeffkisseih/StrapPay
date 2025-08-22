@@ -5,7 +5,9 @@ interface ReminderFormProps {
   onSuccess: () => void;
 }
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+const API_BASE =   import.meta.env.MODE === "development"
+    ? "http://localhost:5000"
+    : "https://strappay-production.up.railway.app";
 
 const ReminderForm: React.FC<ReminderFormProps> = ({ onClose, onSuccess }) => {
   const [title, setTitle] = useState('');

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { PendingPayment, Payment } from '../types/Reminder.ts';
 
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+const API_BASE =   import.meta.env.MODE === "development"
+    ? "http://localhost:5000"
+    : "https://strappay-production.up.railway.app";
 
 const Reminders = () => {
   const [pendingPayments, setPendingPayments] = useState<PendingPayment[]>([]);

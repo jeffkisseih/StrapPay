@@ -5,7 +5,9 @@ interface ScheduleFormProps {
   onSuccess: () => void;
 }
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000";
+const API_BASE =   import.meta.env.MODE === "development"
+    ? "http://localhost:5000"
+    : "https://strappay-production.up.railway.app";
 
 const ScheduleForm: React.FC<ScheduleFormProps> = ({ onClose , onSuccess }) => {
   const [amount, setAmount] = useState('');
