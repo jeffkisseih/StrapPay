@@ -15,7 +15,7 @@ app.use(cors({
     'http://localhost:5173',                 // local dev frontend
     'https://strappay-production.up.railway.app' // production frontend
   ],
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
   credentials: true,
 }));
 
