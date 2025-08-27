@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PendingPayment, Payment } from '../types/Reminder.ts';
 
 
-const API_BASE =   import.meta.env.MODE === "development"
-    ? "http://localhost:5000"
-    : "https://strappay-production.up.railway.app";
+const API_BASE =   import.meta.env.VITE_API_URL;
 
 const Reminders = () => {
   const [pendingPayments, setPendingPayments] = useState<PendingPayment[]>([]);
@@ -18,9 +16,9 @@ const Reminders = () => {
     try {
       
       const [pendingRes, upcomingRes, overdueRes] = await Promise.all([
-        fetch(`${API_BASE}/api/payments/pending`),
-        fetch(`${API_BASE}/api/payments/upcoming`),
-        fetch(`${API_BASE}/api/payments/overdue`),
+        fetch(`${API_BASE}/payments/pending`),
+        fetch(`${API_BASE}/payments/upcoming`),
+        fetch(`${API_BASE}/payments/overdue`),
       ]);
 
       const pendingData = (await pendingRes.json()) as PendingPayment[];

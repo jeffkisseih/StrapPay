@@ -17,9 +17,11 @@ const Dashboard: React.FC = () => {
     setRefreshKey((prev) => prev + 1);
   };
 
+  const API_BASE =   import.meta.env.VITE_API_URL;
+
   const refreshPendingPayments = async () => {
     try {
-      const res = await fetch('/api/payments/pending'); // ✅ updated route
+      const res = await fetch(`${API_BASE}/payments/pending`); // ✅ updated route
       const data = await res.json();
       setPendingPayments(
         data.map((p: any) => ({

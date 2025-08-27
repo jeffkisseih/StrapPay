@@ -5,7 +5,7 @@ import {
   setReminder, markAsPaid,
   getOverduePayments,
   getUpcomingPayments
-} from '../controllers/paymentController.ts'; // ✅ must be `.ts`
+} from '../controllers/paymentController.js'; // ✅ must be `.ts`
 
 const router = Router();
 

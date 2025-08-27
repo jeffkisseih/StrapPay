@@ -27,10 +27,11 @@ app.use('/api/reminders', reminderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/history', historyRoutes);
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   console.log(`❌ Unmatched route: ${req.method} ${req.originalUrl}`);
-  next();
+  res.status(404).json({ error: "Route not found" });
 });
+
 
 
 // Connect DB

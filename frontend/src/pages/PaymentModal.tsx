@@ -8,9 +8,7 @@ interface Props {
   refreshPendingPayments: () => Promise<void>; // ✅ Add refresh here
 }
 
-const API_BASE =   import.meta.env.MODE === "development"
-    ? "http://localhost:5000"
-    : "https://strappay-production.up.railway.app";
+const API_BASE =   import.meta.env.VITE_API_URL;
 
 const PaymentModal: React.FC<Props> = ({ payment, onClose, onPaid, refreshPendingPayments }) => {
   const [processing, setProcessing] = useState(false);
