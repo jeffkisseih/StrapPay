@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import History from '../models/History.ts';
+import History from '../models/History';
 
 // ✅ GET /api/history — Fetch all history entries
 export const getPaymentHistory = async (req: Request, res: Response): Promise<void> => {
