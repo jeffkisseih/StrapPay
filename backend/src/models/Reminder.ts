@@ -1,39 +1,23 @@
-import mongoose, { Schema, Document, Model } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface IReminder extends Document {
-  userId: string;
   title: string;
-  amount: number;
+  amount: number;          // Total amount due
+  amountPaid: number;      // ✅ Just a number, not {type: Number}
   dueDate: Date;
-  isPaid: boolean;
-  recurrence: string;
-  email: string;
-  createdAt: Date;
-  paymentId: string;
+  isPaid: boolean;         // ✅ Just a boolean
+  userId: mongoose.Types.ObjectId;
 }
 
-const reminderSchema: Schema<IReminder> = new Schema({
-  userId: { type: String, required: true },
+const reminderSchema = new Schema<IReminder>({
   title: { type: String, required: true },
   amount: { type: Number, required: true },
+  amountPaid: { type: Number, default: 0 },    // ✅ Schema options stay here
   dueDate: { type: Date, required: true },
-  isPaid: { type: Boolean, default: false },
-  recurrence: { type: String, default: 'none' }, // You can use enum here if needed
-  email: { type: String, required: true },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-    paymentId: {
-    type: String,
-    required: true,
-    unique: true,
-    default: () => `PAY-${Date.now()}-${Math.floor(Math.random() * 10000)}`, // ✅ generates unique payment ID
-  },
+  isPaid: { type: Boolean, default: false },   // ✅ Schema options stay here
+  userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
 
+export default mongoose.model<IReminder>("Reminder", reminderSchema);
 
 
-const Reminder: Model<IReminder> = mongoose.model<IReminder>('Reminder', reminderSchema);
-
-export default  Reminder ;

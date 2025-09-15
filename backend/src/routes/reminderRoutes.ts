@@ -1,28 +1,25 @@
-import { Router } from 'express';
-import {
-  createReminder,
-  getReminders,
-  getReminderById,
-  updateReminder,
-  deleteReminder
-} from '../controllers/reminderController.js'; // Adjust path if needed
+import express from "express";
+import Reminder from "../models/Reminder";
+import authMiddleware from "../middleware/authMiddleware";
 
-const router = Router();
 
-// GET all reminders
-router.get('/', getReminders);
+const router = express.Router();
 
-// GET a single reminder by ID
-router.get('/:id', getReminderById);
 
-// POST a new reminder
-router.post('/', createReminder);
+// Get reminders
+router.get("/", authMiddleware, async (req: any, res) => {
+const reminders = await Reminder.find({ userId: req.user.id });
+res.json(reminders);
+});
 
-// PUT (update) a reminder by ID
-router.put('/:id', updateReminder);
 
-// DELETE a reminder by ID
-router.delete('/:id', deleteReminder);
+// Add reminder
+router.post("/", authMiddleware, async (req: any, res) => {
+const { title, amount, dueDate } = req.body;
+const reminder = new Reminder({ title, amount, dueDate, userId: req.user.id });
+await reminder.save();
+res.status(201).json(reminder);
+});
+
 
 export default router;
-
